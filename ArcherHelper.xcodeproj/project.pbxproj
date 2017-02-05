@@ -12,6 +12,7 @@
 		E3F72BB31E47B6A600D285B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3F72BB11E47B6A600D285B3 /* Main.storyboard */; };
 		E3F72BB51E47B6A600D285B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3F72BB41E47B6A600D285B3 /* Assets.xcassets */; };
 		E3F72BB81E47B6A600D285B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3F72BB61E47B6A600D285B3 /* LaunchScreen.storyboard */; };
+		E3F72BC01E47BA0900D285B3 /* ServerConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F72BBF1E47BA0900D285B3 /* ServerConnector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		E3F72BB41E47B6A600D285B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E3F72BB71E47B6A600D285B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E3F72BB91E47B6A600D285B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E3F72BBF1E47BA0900D285B3 /* ServerConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerConnector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				E3F72BAD1E47B6A500D285B3 /* AppDelegate.swift */,
 				E3F72BAF1E47B6A600D285B3 /* ViewController.swift */,
+				E3F72BBF1E47BA0900D285B3 /* ServerConnector.swift */,
 				E3F72BB11E47B6A600D285B3 /* Main.storyboard */,
 				E3F72BB41E47B6A600D285B3 /* Assets.xcassets */,
 				E3F72BB61E47B6A600D285B3 /* LaunchScreen.storyboard */,
@@ -96,6 +99,7 @@
 				TargetAttributes = {
 					E3F72BA91E47B6A500D285B3 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = Z725SJ238D;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -137,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3F72BB01E47B6A600D285B3 /* ViewController.swift in Sources */,
+				E3F72BC01E47BA0900D285B3 /* ServerConnector.swift in Sources */,
 				E3F72BAE1E47B6A500D285B3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,6 +265,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = Z725SJ238D;
 				INFOPLIST_FILE = ArcherHelper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ycheng.ArcherHelper;
@@ -272,6 +278,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = Z725SJ238D;
 				INFOPLIST_FILE = ArcherHelper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ycheng.ArcherHelper;
