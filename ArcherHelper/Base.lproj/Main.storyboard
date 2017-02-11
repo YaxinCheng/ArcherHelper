@@ -371,6 +371,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="collectionView" destination="cxW-Zb-Zxl" id="FsR-bA-HkJ"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="showScoreVC" id="P1c-7X-dOR"/>
                     </connections>
                 </viewController>

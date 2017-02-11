@@ -7,22 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02F592CF2C0D060ACE0CA03D /* Pods_ArcherHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A6411CB3ED1643E73657492 /* Pods_ArcherHelper.framework */; };
 		E349F7F71E4F91E800776DC1 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E349F7F61E4F91E800776DC1 /* ImageCell.swift */; };
+		E3AA50541E4FBF70000F32D8 /* ArcherHelper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E3AA50521E4FBF70000F32D8 /* ArcherHelper.xcdatamodeld */; };
+		E3AA50591E4FC03B000F32D8 /* TrainingData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA50571E4FC03B000F32D8 /* TrainingData+CoreDataClass.swift */; };
+		E3AA505A1E4FC03B000F32D8 /* TrainingData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA50581E4FC03B000F32D8 /* TrainingData+CoreDataProperties.swift */; };
 		E3F72BAE1E47B6A500D285B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F72BAD1E47B6A500D285B3 /* AppDelegate.swift */; };
 		E3F72BB01E47B6A600D285B3 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F72BAF1E47B6A600D285B3 /* ScoreViewController.swift */; };
 		E3F72BB31E47B6A600D285B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3F72BB11E47B6A600D285B3 /* Main.storyboard */; };
 		E3F72BB51E47B6A600D285B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3F72BB41E47B6A600D285B3 /* Assets.xcassets */; };
 		E3F72BB81E47B6A600D285B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3F72BB61E47B6A600D285B3 /* LaunchScreen.storyboard */; };
 		E3F72BC01E47BA0900D285B3 /* ServerConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F72BBF1E47BA0900D285B3 /* ServerConnector.swift */; };
-		E3FDA1F01E4D2B52008A41A2 /* TrainingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FDA1EF1E4D2B52008A41A2 /* TrainingData.swift */; };
 		E3FDA1F21E4E98E1008A41A2 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FDA1F11E4E98E1008A41A2 /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		106C4A5C53D3C1C55758A742 /* Pods-ArcherHelper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArcherHelper.release.xcconfig"; path = "Pods/Target Support Files/Pods-ArcherHelper/Pods-ArcherHelper.release.xcconfig"; sourceTree = "<group>"; };
-		1A6411CB3ED1643E73657492 /* Pods_ArcherHelper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ArcherHelper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E349F7F61E4F91E800776DC1 /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		E3AA50531E4FBF70000F32D8 /* ArcherHelper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ArcherHelper.xcdatamodel; sourceTree = "<group>"; };
+		E3AA50571E4FC03B000F32D8 /* TrainingData+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TrainingData+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E3AA50581E4FC03B000F32D8 /* TrainingData+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TrainingData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E3F72BAA1E47B6A500D285B3 /* ArcherHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArcherHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3F72BAD1E47B6A500D285B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3F72BAF1E47B6A600D285B3 /* ScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
@@ -31,9 +33,7 @@
 		E3F72BB71E47B6A600D285B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E3F72BB91E47B6A600D285B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3F72BBF1E47BA0900D285B3 /* ServerConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerConnector.swift; sourceTree = "<group>"; };
-		E3FDA1EF1E4D2B52008A41A2 /* TrainingData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingData.swift; sourceTree = "<group>"; };
 		E3FDA1F11E4E98E1008A41A2 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		F804C91F29E8174C2677A3FA /* Pods-ArcherHelper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArcherHelper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ArcherHelper/Pods-ArcherHelper.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,37 +41,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02F592CF2C0D060ACE0CA03D /* Pods_ArcherHelper.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2AE50BF6B01E78700CEB298E /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				F804C91F29E8174C2677A3FA /* Pods-ArcherHelper.debug.xcconfig */,
-				106C4A5C53D3C1C55758A742 /* Pods-ArcherHelper.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		65D63FEB868EC023A6FACDD3 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				1A6411CB3ED1643E73657492 /* Pods_ArcherHelper.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		E3F72BA11E47B6A500D285B3 = {
 			isa = PBXGroup;
 			children = (
+				E3AA50571E4FC03B000F32D8 /* TrainingData+CoreDataClass.swift */,
+				E3AA50581E4FC03B000F32D8 /* TrainingData+CoreDataProperties.swift */,
 				E3F72BAC1E47B6A500D285B3 /* ArcherHelper */,
 				E3F72BAB1E47B6A500D285B3 /* Products */,
-				2AE50BF6B01E78700CEB298E /* Pods */,
-				65D63FEB868EC023A6FACDD3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -91,11 +73,11 @@
 				E349F7F61E4F91E800776DC1 /* ImageCell.swift */,
 				E3F72BAF1E47B6A600D285B3 /* ScoreViewController.swift */,
 				E3F72BBF1E47BA0900D285B3 /* ServerConnector.swift */,
-				E3FDA1EF1E4D2B52008A41A2 /* TrainingData.swift */,
 				E3F72BB11E47B6A600D285B3 /* Main.storyboard */,
 				E3F72BB41E47B6A600D285B3 /* Assets.xcassets */,
 				E3F72BB61E47B6A600D285B3 /* LaunchScreen.storyboard */,
 				E3F72BB91E47B6A600D285B3 /* Info.plist */,
+				E3AA50521E4FBF70000F32D8 /* ArcherHelper.xcdatamodeld */,
 			);
 			path = ArcherHelper;
 			sourceTree = "<group>";
@@ -107,12 +89,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E3F72BBC1E47B6A600D285B3 /* Build configuration list for PBXNativeTarget "ArcherHelper" */;
 			buildPhases = (
-				43BEBC1195C01D69B2377602 /* [CP] Check Pods Manifest.lock */,
 				E3F72BA61E47B6A500D285B3 /* Sources */,
 				E3F72BA71E47B6A500D285B3 /* Frameworks */,
 				E3F72BA81E47B6A500D285B3 /* Resources */,
-				4DB3C0B5D0693762F47E2BF6 /* [CP] Embed Pods Frameworks */,
-				1CBE7BBF4882C8731616FDB1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -171,63 +150,17 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		1CBE7BBF4882C8731616FDB1 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ArcherHelper/Pods-ArcherHelper-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		43BEBC1195C01D69B2377602 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		4DB3C0B5D0693762F47E2BF6 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ArcherHelper/Pods-ArcherHelper-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		E3F72BA61E47B6A500D285B3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				E3F72BB01E47B6A600D285B3 /* ScoreViewController.swift in Sources */,
+				E3AA505A1E4FC03B000F32D8 /* TrainingData+CoreDataProperties.swift in Sources */,
 				E3F72BC01E47BA0900D285B3 /* ServerConnector.swift in Sources */,
+				E3AA50541E4FBF70000F32D8 /* ArcherHelper.xcdatamodeld in Sources */,
 				E3F72BAE1E47B6A500D285B3 /* AppDelegate.swift in Sources */,
-				E3FDA1F01E4D2B52008A41A2 /* TrainingData.swift in Sources */,
+				E3AA50591E4FC03B000F32D8 /* TrainingData+CoreDataClass.swift in Sources */,
 				E3FDA1F21E4E98E1008A41A2 /* MainViewController.swift in Sources */,
 				E349F7F71E4F91E800776DC1 /* ImageCell.swift in Sources */,
 			);
@@ -350,7 +283,6 @@
 		};
 		E3F72BBD1E47B6A600D285B3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F804C91F29E8174C2677A3FA /* Pods-ArcherHelper.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = Z725SJ238D;
@@ -364,7 +296,6 @@
 		};
 		E3F72BBE1E47B6A600D285B3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 106C4A5C53D3C1C55758A742 /* Pods-ArcherHelper.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = Z725SJ238D;
@@ -398,6 +329,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E3AA50521E4FBF70000F32D8 /* ArcherHelper.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E3AA50531E4FBF70000F32D8 /* ArcherHelper.xcdatamodel */,
+			);
+			currentVersion = E3AA50531E4FBF70000F32D8 /* ArcherHelper.xcdatamodel */;
+			path = ArcherHelper.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E3F72BA21E47B6A500D285B3 /* Project object */;
 }

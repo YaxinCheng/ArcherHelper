@@ -11,9 +11,10 @@ import UIKit
 class MainViewController: UIViewController {
 	
 	private let imgPicker = UIImagePickerController()
+	@IBOutlet weak var collectionView: UICollectionView!
 	
 	fileprivate var dataset: [TrainingData] {
-		return []
+		return TrainingData.findAll()
 	}
 	
 	override func viewDidLoad() {
@@ -22,34 +23,39 @@ class MainViewController: UIViewController {
 		// Do any additional setup after loading the view.
 		imgPicker.delegate = self
 		imgPicker.allowsEditing = true
+		
+		NotificationCenter.default.addObserver(self, selector: #selector(refreshCollectionView), name: Notification.Name("NewDataCreated"), object: nil)
+	}
+	
+	func refreshCollectionView() {
+		collectionView.reloadData()
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		
-//		let queue = DispatchQueue.global(qos: .background)
-//		queue.async { [weak self] in
-//			let server = ServerConnector()
-//			for eachData in self?.dataset ?? [] {
-//				if eachData.uploading == false { continue }
-//				if eachData.id == "Not uploaded yet" {
-//					server.sendRequest(data: eachData) { (id, data, error) in
-//						if error != nil {
-//							
-//						} else if let dataID = id, let trainingData = data {
-//							try! Realm().write {
-//								trainingData.id = dataID
-//								trainingData.uploading = false
-//							}
-//						}
-//					}
-//				} else {
-//					server.updateRequest(label: eachData.labels.map({String($0.score)}).joined(separator: ","), id: eachData.id) { (id, error) in
-//						
-//					}
-//				}
-//			}
-//		}
+		let queue = DispatchQueue.global(qos: .background)
+		queue.async { [weak self] in
+			let server = ServerConnector()
+			for eachData in self?.dataset ?? [] {
+				if eachData.uploading == false { continue }
+				if eachData.id == "Not uploaded yet" {
+					server.sendRequest(data: eachData) { (id, data, error) in
+						if error != nil {
+							
+						} else if let dataID = id, let trainingData = data {
+							trainingData.id = dataID
+							trainingData.uploading = false
+							trainingData.save()
+						}
+					}
+				} else {
+					server.updateRequest(label: eachData.scores!, id: eachData.id!) { (id, error) in
+						
+					}
+				}
+			}
+		}
 	}
 	
 	@IBAction func navButtonPressed(_ sender: UIBarButtonItem) {
@@ -102,8 +108,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as? ImageCell else { return UICollectionViewCell() }
 		let dataSource = dataset[indexPath.row]
-//		let image = UIImage(data: dataSource.picture)
-//		cell.imageView.image = image
+		let image = UIImage(data: dataSource.picture as! Data)
+		cell.imageView.image = image
 		return cell
 	}
 	

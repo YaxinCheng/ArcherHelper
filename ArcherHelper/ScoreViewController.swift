@@ -26,11 +26,11 @@ class ScoreViewController: UIViewController {
 		if presentingImage != nil {
 			imageView.image = presentingImage
 		} else if let datasource = presentingDataSource {
-//			imageView.image = UIImage(data: datasource.picture)
-//			let allScores = datasource.labels.map { $0.score }
-//			for (eachField, score) in zip(scoreFields, allScores) {
-//				eachField.text = String(score)
-//			}
+			imageView.image = UIImage(data: datasource.picture as! Data)
+			guard let allScores = datasource.scores?.components(separatedBy: ",") else { return }
+			for (eachField, score) in zip(scoreFields, allScores) {
+				eachField.text = score
+			}
 		}
 		
 	}
@@ -42,17 +42,15 @@ class ScoreViewController: UIViewController {
 			return
 		}
 		if presentingDataSource == nil {
-//			let queue = DispatchQueue.global(qos: .background)
-//			let trainingData = TrainingData()
-//			trainingData.picture = imageData
-//			let labels = gatherInfo()
-//			trainingData.labels.append(contentsOf: labels.map({ Score(value: ["score": Int($0)]) }) )
-//			trainingData.save()
+			guard let trainingData = TrainingData.construct() else { return }
+			trainingData.picture = imageData as NSData
+			let labels = gatherInfo()
+			trainingData.scores = labels.joined(separator: ",")
+			trainingData.save()
 		} else {
-//			print(gatherInfo().map({ Score(value: ["score": Int($0)])}))
-//			try! Realm().delete(presentingDataSource!.labels)
-//			presentingDataSource!.labels.append(contentsOf: gatherInfo().map({ Score(value: ["score": Int($0)])}) )
-//			presentingDataSource!.uploading = true
+			presentingDataSource!.scores = gatherInfo().joined(separator: ",")
+			presentingDataSource!.uploading = true
+			presentingDataSource!.save()
 		}
 	}
 
