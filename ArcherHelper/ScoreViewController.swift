@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
 
 class ScoreViewController: UIViewController {
 
@@ -27,11 +26,11 @@ class ScoreViewController: UIViewController {
 		if presentingImage != nil {
 			imageView.image = presentingImage
 		} else if let datasource = presentingDataSource {
-			imageView.image = UIImage(data: datasource.picture)
-			let allScores = datasource.labels.map { $0.score }
-			for (eachField, score) in zip(scoreFields, allScores) {
-				eachField.text = String(score)
-			}
+//			imageView.image = UIImage(data: datasource.picture)
+//			let allScores = datasource.labels.map { $0.score }
+//			for (eachField, score) in zip(scoreFields, allScores) {
+//				eachField.text = String(score)
+//			}
 		}
 		
 	}
@@ -43,19 +42,17 @@ class ScoreViewController: UIViewController {
 			return
 		}
 		if presentingDataSource == nil {
-			let queue = DispatchQueue.global(qos: .background)
-			let trainingData = TrainingData()
-			trainingData.picture = imageData
-			let labels = gatherInfo()
-			trainingData.labels.append(contentsOf: labels.map({ Score(value: ["score": Int($0)]) }) )
-			trainingData.save()
+//			let queue = DispatchQueue.global(qos: .background)
+//			let trainingData = TrainingData()
+//			trainingData.picture = imageData
+//			let labels = gatherInfo()
+//			trainingData.labels.append(contentsOf: labels.map({ Score(value: ["score": Int($0)]) }) )
+//			trainingData.save()
 		} else {
-			try! Realm().write {
-				print(gatherInfo().map({ Score(value: ["score": Int($0)])}))
-				try! Realm().delete(presentingDataSource!.labels)
-				presentingDataSource!.labels.append(contentsOf: gatherInfo().map({ Score(value: ["score": Int($0)])}) )
-				presentingDataSource!.uploading = true
-			}
+//			print(gatherInfo().map({ Score(value: ["score": Int($0)])}))
+//			try! Realm().delete(presentingDataSource!.labels)
+//			presentingDataSource!.labels.append(contentsOf: gatherInfo().map({ Score(value: ["score": Int($0)])}) )
+//			presentingDataSource!.uploading = true
 		}
 	}
 
