@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		02F592CF2C0D060ACE0CA03D /* Pods_ArcherHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A6411CB3ED1643E73657492 /* Pods_ArcherHelper.framework */; };
+		E349F7F71E4F91E800776DC1 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E349F7F61E4F91E800776DC1 /* ImageCell.swift */; };
 		E3F72BAE1E47B6A500D285B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F72BAD1E47B6A500D285B3 /* AppDelegate.swift */; };
 		E3F72BB01E47B6A600D285B3 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F72BAF1E47B6A600D285B3 /* ScoreViewController.swift */; };
 		E3F72BB31E47B6A600D285B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3F72BB11E47B6A600D285B3 /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		106C4A5C53D3C1C55758A742 /* Pods-ArcherHelper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArcherHelper.release.xcconfig"; path = "Pods/Target Support Files/Pods-ArcherHelper/Pods-ArcherHelper.release.xcconfig"; sourceTree = "<group>"; };
 		1A6411CB3ED1643E73657492 /* Pods_ArcherHelper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ArcherHelper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E349F7F61E4F91E800776DC1 /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		E3F72BAA1E47B6A500D285B3 /* ArcherHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArcherHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3F72BAD1E47B6A500D285B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3F72BAF1E47B6A600D285B3 /* ScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			children = (
 				E3F72BAD1E47B6A500D285B3 /* AppDelegate.swift */,
 				E3FDA1F11E4E98E1008A41A2 /* MainViewController.swift */,
+				E349F7F61E4F91E800776DC1 /* ImageCell.swift */,
 				E3F72BAF1E47B6A600D285B3 /* ScoreViewController.swift */,
 				E3F72BBF1E47BA0900D285B3 /* ServerConnector.swift */,
 				E3FDA1EF1E4D2B52008A41A2 /* TrainingData.swift */,
@@ -226,6 +229,7 @@
 				E3F72BAE1E47B6A500D285B3 /* AppDelegate.swift in Sources */,
 				E3FDA1F01E4D2B52008A41A2 /* TrainingData.swift in Sources */,
 				E3FDA1F21E4E98E1008A41A2 /* MainViewController.swift in Sources */,
+				E349F7F71E4F91E800776DC1 /* ImageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

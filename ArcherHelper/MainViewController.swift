@@ -13,7 +13,7 @@ class MainViewController: UIViewController {
 	
 	private let imgPicker = UIImagePickerController()
 	
-	private var dataset: [TrainingData] {
+	fileprivate var dataset: [TrainingData] {
 		return Array(try! Realm().objects(TrainingData.self))
 	}
 	
@@ -28,7 +28,29 @@ class MainViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		
-		print(dataset.count)
+		let queue = DispatchQueue.global(qos: .background)
+		queue.async { [weak self] in
+			let server = ServerConnector()
+			for eachData in self?.dataset ?? [] {
+				if eachData.uploading == false { continue }
+				if eachData.id == "Not uploaded yet" {
+					server.sendRequest(data: eachData) { (id, data, error) in
+						if error != nil {
+							
+						} else if let dataID = id, let trainingData = data {
+							try! Realm().write {
+								trainingData.id = dataID
+								trainingData.uploading = false
+							}
+						}
+					}
+				} else {
+					server.updateRequest(label: eachData.labels.map({String($0.score)}).joined(separator: ","), id: eachData.id) { (id, error) in
+						
+					}
+				}
+			}
+		}
 	}
 	
 	@IBAction func navButtonPressed(_ sender: UIBarButtonItem) {
@@ -53,6 +75,8 @@ class MainViewController: UIViewController {
 		let destinationVC = segue.destination as! ScoreViewController
 		if let pickedImg = sender as? UIImage {
 			destinationVC.presentingImage = pickedImg
+		} else if let dataSource = sender as? TrainingData {
+			destinationVC.presentingDataSource = dataSource
 		}
 	}
 	
@@ -64,5 +88,29 @@ extension MainViewController: UIImagePickerControllerDelegate, UINavigationContr
 		picker.dismiss(animated: true) { [weak self] in
 			self?.performSegue(withIdentifier: "showScoreVC", sender: image)
 		}
+	}
+}
+
+extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+	func numberOfSections(in collectionView: UICollectionView) -> Int {
+		return 1
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		return dataset.count
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as? ImageCell else { return UICollectionViewCell() }
+		let dataSource = dataset[indexPath.row]
+		let image = UIImage(data: dataSource.picture)
+		cell.imageView.image = image
+		return cell
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		let dataSource = dataset[indexPath.row]
+		performSegue(withIdentifier: "showScoreVC", sender: dataSource)
+		collectionView.deselectItem(at: indexPath, animated: true)
 	}
 }

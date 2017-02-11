@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ScoreViewController: UIViewController {
 
@@ -16,13 +17,23 @@ class ScoreViewController: UIViewController {
 	private var screenUp: Bool = false
 	
 	var presentingImage: UIImage?
+	var presentingDataSource: TrainingData?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardShowup(notification:)), name: Notification.Name.UIKeyboardWillShow, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardClose(notification:)), name: Notification.Name.UIKeyboardWillHide, object: nil)
-		imageView.image = presentingImage
+		if presentingImage != nil {
+			imageView.image = presentingImage
+		} else if let datasource = presentingDataSource {
+			imageView.image = UIImage(data: datasource.picture)
+			let allScores = datasource.labels.map { $0.score }
+			for (eachField, score) in zip(scoreFields, allScores) {
+				eachField.text = String(score)
+			}
+		}
+		
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
@@ -31,11 +42,21 @@ class ScoreViewController: UIViewController {
 		guard let image = imageView.image, let imageData = UIImageJPEGRepresentation(image, 0.5) else {
 			return
 		}
-		let trainingData = TrainingData()
-		trainingData.picture = imageData
-		let labels = gatherInfo()
-		trainingData.labels.append(contentsOf: labels.map({ Score(value: ["score": Int($0)]) }) )
-		trainingData.save()
+		if presentingDataSource == nil {
+			let queue = DispatchQueue.global(qos: .background)
+			let trainingData = TrainingData()
+			trainingData.picture = imageData
+			let labels = gatherInfo()
+			trainingData.labels.append(contentsOf: labels.map({ Score(value: ["score": Int($0)]) }) )
+			trainingData.save()
+		} else {
+			try! Realm().write {
+				print(gatherInfo().map({ Score(value: ["score": Int($0)])}))
+				try! Realm().delete(presentingDataSource!.labels)
+				presentingDataSource!.labels.append(contentsOf: gatherInfo().map({ Score(value: ["score": Int($0)])}) )
+				presentingDataSource!.uploading = true
+			}
+		}
 	}
 
 	

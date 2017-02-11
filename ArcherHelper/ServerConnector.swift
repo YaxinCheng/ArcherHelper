@@ -16,7 +16,7 @@ struct ServerConnector {
 		destinationURL = URL(string: destination)!
 	}
 	
-	func sendRequest(with data: [String: Any], completion: (([String: Any], Error?) -> Void)?) {
+	func sendRequest(data: [String: Any], completion: (([String: Any], Error?) -> Void)?) {
 		let json: Data
 		do {
 			json = try JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
@@ -32,6 +32,50 @@ struct ServerConnector {
 			} else {
 				guard let responseData = data, let json = (try? JSONSerialization.jsonObject(with: responseData, options: .mutableLeaves)) as? [String: Any] else { return }
 				completion?(json, error)
+			}
+		}
+		session.resume()
+	}
+	
+	func sendRequest(data: TrainingData, completion: @escaping (String?, TrainingData?, Error?) -> Void) {
+		let imageData = data.picture.base64EncodedString()
+		let labels = data.labels.map({String($0.score)}).joined(separator: ",")
+		let json: Data
+		do {
+			json = try JSONSerialization.data(withJSONObject: ["img": imageData, "label": labels, "id": "Not uploaded yet", "mode": "insert"], options: .prettyPrinted)
+		} catch {
+			return
+		}
+		var request = URLRequest(url: destinationURL)
+		request.httpMethod = "POST"
+		request.httpBody = json
+		let session = URLSession.shared.dataTask(with: request) { (jsonData, response, error) in
+			if error != nil {
+				completion(nil, nil, error)
+			} else {
+				guard let responseData = jsonData, let json = (try? JSONSerialization.jsonObject(with: responseData, options: .mutableLeaves)) as? [String: Any], let id = json["Result"] as? String else { return }
+				completion(id, data, nil)
+			}
+		}
+		session.resume()
+	}
+	
+	func updateRequest(label: String, id: String, completion: @escaping (String?, Error?) -> Void) {
+		let json: Data
+		do {
+			json = try JSONSerialization.data(withJSONObject: ["img": "", "label": label, "id": id, "mode": "update"], options: .prettyPrinted)
+		} catch {
+			return
+		}
+		var request = URLRequest(url: destinationURL)
+		request.httpMethod = "POST"
+		request.httpBody = json
+		let session = URLSession.shared.dataTask(with: request) { (jsonData, response, error) in
+			if error != nil {
+				completion(nil, error)
+			} else {
+				guard let responseData = jsonData, let json = (try? JSONSerialization.jsonObject(with: responseData, options: .mutableLeaves)) as? [String: Any], let id = json["Result"] as? String else { return }
+				completion(id, nil)
 			}
 		}
 		session.resume()

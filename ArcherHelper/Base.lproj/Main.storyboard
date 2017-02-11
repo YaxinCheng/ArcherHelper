@@ -310,7 +310,53 @@
                     <view key="view" contentMode="scaleToFill" id="2fv-AR-ZNF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cxW-Zb-Zxl">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="29i-Cz-kOz">
+                                    <size key="itemSize" width="107" height="107"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageCell" id="ASk-ws-gWj" customClass="ImageCell" customModule="ArcherHelper" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="107" height="107"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="107" height="107"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YAV-ia-Ekg">
+                                                    <rect key="frame" x="0.0" y="0.0" width="107" height="107"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailingMargin" secondItem="YAV-ia-Ekg" secondAttribute="trailing" constant="-8" id="Kzx-UZ-Ykh"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="YAV-ia-Ekg" secondAttribute="bottom" constant="-8" id="YK2-lS-Kjh"/>
+                                            <constraint firstItem="YAV-ia-Ekg" firstAttribute="top" secondItem="ASk-ws-gWj" secondAttribute="topMargin" constant="-8" id="eck-sI-34b"/>
+                                            <constraint firstItem="YAV-ia-Ekg" firstAttribute="leading" secondItem="ASk-ws-gWj" secondAttribute="leadingMargin" constant="-8" id="lD8-0P-Yiw"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="YAV-ia-Ekg" id="lIj-Pl-qsl"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="uvo-qb-7wn" id="f64-TP-UzP"/>
+                                    <outlet property="delegate" destination="uvo-qb-7wn" id="sao-34-dQr"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="cxW-Zb-Zxl" secondAttribute="trailing" constant="-16" id="2tf-8K-BWw"/>
+                            <constraint firstItem="lUI-Jg-cqg" firstAttribute="top" secondItem="cxW-Zb-Zxl" secondAttribute="bottom" id="LaI-HR-fFc"/>
+                            <constraint firstItem="cxW-Zb-Zxl" firstAttribute="leading" secondItem="2fv-AR-ZNF" secondAttribute="leadingMargin" constant="-16" id="Sfl-bP-q5Q"/>
+                            <constraint firstItem="cxW-Zb-Zxl" firstAttribute="top" secondItem="JIA-NC-pNu" secondAttribute="bottom" constant="-64" id="zw8-X5-1Xl"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Pl7-Uy-JQH">
                         <barButtonItem key="leftBarButtonItem" tag="1" title="Camera" id="C6Z-EY-Ec3">
@@ -330,7 +376,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U28-yq-i6J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="849" y="421"/>
+            <point key="canvasLocation" x="848.79999999999995" y="419.64017991004499"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="f7P-Jm-lGG">
