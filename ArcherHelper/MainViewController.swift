@@ -34,6 +34,7 @@ class MainViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		
+		guard InternetDetector.isReachableViaWifi else { return }
 		let queue = DispatchQueue.global(qos: .background)
 		queue.async { [weak self] in
 			let server = ServerConnector()
@@ -44,14 +45,24 @@ class MainViewController: UIViewController {
 						if error != nil {
 							
 						} else if let dataID = id, let trainingData = data {
-							trainingData.id = dataID
-							trainingData.uploading = false
-							trainingData.save()
+							if dataID == "Failed processing image" {
+								
+							} else {
+								trainingData.id = dataID
+								trainingData.uploading = false
+								trainingData.save()
+							}
 						}
 					}
 				} else {
 					server.updateRequest(label: eachData.scores!, id: eachData.id!) { (id, error) in
-						
+						if error != nil {
+							
+						} else if let dataID = id, dataID != "Failed processing image" {
+							
+						} else {
+							
+						}
 					}
 				}
 			}

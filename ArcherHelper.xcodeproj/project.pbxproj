@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		75727149E0784BB87A98C0BB /* Pods_ArcherHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C148E0A9BCCAEBC9AAB7833 /* Pods_ArcherHelper.framework */; };
 		E349F7F71E4F91E800776DC1 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E349F7F61E4F91E800776DC1 /* ImageCell.swift */; };
 		E3AA50541E4FBF70000F32D8 /* ArcherHelper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E3AA50521E4FBF70000F32D8 /* ArcherHelper.xcdatamodeld */; };
 		E3AA50591E4FC03B000F32D8 /* TrainingData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA50571E4FC03B000F32D8 /* TrainingData+CoreDataClass.swift */; };
 		E3AA505A1E4FC03B000F32D8 /* TrainingData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA50581E4FC03B000F32D8 /* TrainingData+CoreDataProperties.swift */; };
+		E3AA505C1E4FC966000F32D8 /* InternetDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA505B1E4FC966000F32D8 /* InternetDetector.swift */; };
 		E3F72BAE1E47B6A500D285B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F72BAD1E47B6A500D285B3 /* AppDelegate.swift */; };
 		E3F72BB01E47B6A600D285B3 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F72BAF1E47B6A600D285B3 /* ScoreViewController.swift */; };
 		E3F72BB31E47B6A600D285B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3F72BB11E47B6A600D285B3 /* Main.storyboard */; };
@@ -21,10 +23,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6C148E0A9BCCAEBC9AAB7833 /* Pods_ArcherHelper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ArcherHelper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC79488D48DC635CB3968A5F /* Pods-ArcherHelper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArcherHelper.release.xcconfig"; path = "Pods/Target Support Files/Pods-ArcherHelper/Pods-ArcherHelper.release.xcconfig"; sourceTree = "<group>"; };
+		DF35598502F83F1FB7411163 /* Pods-ArcherHelper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArcherHelper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ArcherHelper/Pods-ArcherHelper.debug.xcconfig"; sourceTree = "<group>"; };
 		E349F7F61E4F91E800776DC1 /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		E3AA50531E4FBF70000F32D8 /* ArcherHelper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ArcherHelper.xcdatamodel; sourceTree = "<group>"; };
 		E3AA50571E4FC03B000F32D8 /* TrainingData+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TrainingData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		E3AA50581E4FC03B000F32D8 /* TrainingData+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TrainingData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E3AA505B1E4FC966000F32D8 /* InternetDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetDetector.swift; sourceTree = "<group>"; };
 		E3F72BAA1E47B6A500D285B3 /* ArcherHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArcherHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3F72BAD1E47B6A500D285B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3F72BAF1E47B6A600D285B3 /* ScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
@@ -41,12 +47,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75727149E0784BB87A98C0BB /* Pods_ArcherHelper.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D655A884F59572303D579038 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DF35598502F83F1FB7411163 /* Pods-ArcherHelper.debug.xcconfig */,
+				CC79488D48DC635CB3968A5F /* Pods-ArcherHelper.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E3F72BA11E47B6A500D285B3 = {
 			isa = PBXGroup;
 			children = (
@@ -54,6 +70,8 @@
 				E3AA50581E4FC03B000F32D8 /* TrainingData+CoreDataProperties.swift */,
 				E3F72BAC1E47B6A500D285B3 /* ArcherHelper */,
 				E3F72BAB1E47B6A500D285B3 /* Products */,
+				D655A884F59572303D579038 /* Pods */,
+				F831F5BCBF790F2A245680D8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -70,6 +88,7 @@
 			children = (
 				E3F72BAD1E47B6A500D285B3 /* AppDelegate.swift */,
 				E3FDA1F11E4E98E1008A41A2 /* MainViewController.swift */,
+				E3AA505B1E4FC966000F32D8 /* InternetDetector.swift */,
 				E349F7F61E4F91E800776DC1 /* ImageCell.swift */,
 				E3F72BAF1E47B6A600D285B3 /* ScoreViewController.swift */,
 				E3F72BBF1E47BA0900D285B3 /* ServerConnector.swift */,
@@ -82,6 +101,14 @@
 			path = ArcherHelper;
 			sourceTree = "<group>";
 		};
+		F831F5BCBF790F2A245680D8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6C148E0A9BCCAEBC9AAB7833 /* Pods_ArcherHelper.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -89,9 +116,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E3F72BBC1E47B6A600D285B3 /* Build configuration list for PBXNativeTarget "ArcherHelper" */;
 			buildPhases = (
+				3817ABA65383BED5CF90B1B7 /* [CP] Check Pods Manifest.lock */,
 				E3F72BA61E47B6A500D285B3 /* Sources */,
 				E3F72BA71E47B6A500D285B3 /* Frameworks */,
 				E3F72BA81E47B6A500D285B3 /* Resources */,
+				9B69159EBDBFE26C3C35DDA5 /* [CP] Embed Pods Frameworks */,
+				9D650B558EBB5BCCA9E67AAC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -150,6 +180,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3817ABA65383BED5CF90B1B7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9B69159EBDBFE26C3C35DDA5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ArcherHelper/Pods-ArcherHelper-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9D650B558EBB5BCCA9E67AAC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ArcherHelper/Pods-ArcherHelper-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E3F72BA61E47B6A500D285B3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -162,6 +240,7 @@
 				E3F72BAE1E47B6A500D285B3 /* AppDelegate.swift in Sources */,
 				E3AA50591E4FC03B000F32D8 /* TrainingData+CoreDataClass.swift in Sources */,
 				E3FDA1F21E4E98E1008A41A2 /* MainViewController.swift in Sources */,
+				E3AA505C1E4FC966000F32D8 /* InternetDetector.swift in Sources */,
 				E349F7F71E4F91E800776DC1 /* ImageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,6 +362,7 @@
 		};
 		E3F72BBD1E47B6A600D285B3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF35598502F83F1FB7411163 /* Pods-ArcherHelper.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = Z725SJ238D;
@@ -296,6 +376,7 @@
 		};
 		E3F72BBE1E47B6A600D285B3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC79488D48DC635CB3968A5F /* Pods-ArcherHelper.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = Z725SJ238D;
