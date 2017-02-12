@@ -331,16 +331,26 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YAV-ia-Ekg">
                                                     <rect key="frame" x="0.0" y="0.0" width="107" height="107"/>
                                                 </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_cloud_queue" translatesAutoresizingMaskIntoConstraints="NO" id="NOA-oG-7lU">
+                                                    <rect key="frame" x="87" y="87" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="OPe-ld-lcF"/>
+                                                        <constraint firstAttribute="width" constant="20" id="kkL-AB-bFd"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                         </view>
                                         <constraints>
                                             <constraint firstAttribute="trailingMargin" secondItem="YAV-ia-Ekg" secondAttribute="trailing" constant="-8" id="Kzx-UZ-Ykh"/>
+                                            <constraint firstItem="NOA-oG-7lU" firstAttribute="trailing" secondItem="YAV-ia-Ekg" secondAttribute="trailing" id="Li5-6F-X5m"/>
+                                            <constraint firstItem="NOA-oG-7lU" firstAttribute="bottom" secondItem="YAV-ia-Ekg" secondAttribute="bottom" id="RW9-ey-V0F"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="YAV-ia-Ekg" secondAttribute="bottom" constant="-8" id="YK2-lS-Kjh"/>
                                             <constraint firstItem="YAV-ia-Ekg" firstAttribute="top" secondItem="ASk-ws-gWj" secondAttribute="topMargin" constant="-8" id="eck-sI-34b"/>
                                             <constraint firstItem="YAV-ia-Ekg" firstAttribute="leading" secondItem="ASk-ws-gWj" secondAttribute="leadingMargin" constant="-8" id="lD8-0P-Yiw"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="imageView" destination="YAV-ia-Ekg" id="lIj-Pl-qsl"/>
+                                            <outlet property="syncIndicator" destination="NOA-oG-7lU" id="BNQ-Vj-JKP"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -398,4 +408,7 @@
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_cloud_queue" width="24" height="24"/>
+    </resources>
 </document>

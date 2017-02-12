@@ -13,6 +13,8 @@
 		E3AA50591E4FC03B000F32D8 /* TrainingData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA50571E4FC03B000F32D8 /* TrainingData+CoreDataClass.swift */; };
 		E3AA505A1E4FC03B000F32D8 /* TrainingData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA50581E4FC03B000F32D8 /* TrainingData+CoreDataProperties.swift */; };
 		E3AA505C1E4FC966000F32D8 /* InternetDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA505B1E4FC966000F32D8 /* InternetDetector.swift */; };
+		E3AA505E1E50AFF4000F32D8 /* ScoreViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA505D1E50AFF4000F32D8 /* ScoreViewDelegate.swift */; };
+		E3AA50601E50B564000F32D8 /* UIAlertAction+Cancel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA505F1E50B564000F32D8 /* UIAlertAction+Cancel.swift */; };
 		E3F72BAE1E47B6A500D285B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F72BAD1E47B6A500D285B3 /* AppDelegate.swift */; };
 		E3F72BB01E47B6A600D285B3 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F72BAF1E47B6A600D285B3 /* ScoreViewController.swift */; };
 		E3F72BB31E47B6A600D285B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3F72BB11E47B6A600D285B3 /* Main.storyboard */; };
@@ -31,6 +33,8 @@
 		E3AA50571E4FC03B000F32D8 /* TrainingData+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TrainingData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		E3AA50581E4FC03B000F32D8 /* TrainingData+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TrainingData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E3AA505B1E4FC966000F32D8 /* InternetDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetDetector.swift; sourceTree = "<group>"; };
+		E3AA505D1E50AFF4000F32D8 /* ScoreViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreViewDelegate.swift; sourceTree = "<group>"; };
+		E3AA505F1E50B564000F32D8 /* UIAlertAction+Cancel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertAction+Cancel.swift"; sourceTree = "<group>"; };
 		E3F72BAA1E47B6A500D285B3 /* ArcherHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArcherHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3F72BAD1E47B6A500D285B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3F72BAF1E47B6A600D285B3 /* ScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +92,8 @@
 			children = (
 				E3F72BAD1E47B6A500D285B3 /* AppDelegate.swift */,
 				E3FDA1F11E4E98E1008A41A2 /* MainViewController.swift */,
+				E3AA505F1E50B564000F32D8 /* UIAlertAction+Cancel.swift */,
+				E3AA505D1E50AFF4000F32D8 /* ScoreViewDelegate.swift */,
 				E3AA505B1E4FC966000F32D8 /* InternetDetector.swift */,
 				E349F7F61E4F91E800776DC1 /* ImageCell.swift */,
 				E3F72BAF1E47B6A600D285B3 /* ScoreViewController.swift */,
@@ -233,6 +239,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3AA505E1E50AFF4000F32D8 /* ScoreViewDelegate.swift in Sources */,
+				E3AA50601E50B564000F32D8 /* UIAlertAction+Cancel.swift in Sources */,
 				E3F72BB01E47B6A600D285B3 /* ScoreViewController.swift in Sources */,
 				E3AA505A1E4FC03B000F32D8 /* TrainingData+CoreDataProperties.swift in Sources */,
 				E3F72BC01E47BA0900D285B3 /* ServerConnector.swift in Sources */,

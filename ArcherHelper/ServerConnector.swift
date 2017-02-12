@@ -54,6 +54,11 @@ struct ServerConnector {
 				completion(nil, nil, error)
 			} else {
 				guard let responseData = jsonData, let json = (try? JSONSerialization.jsonObject(with: responseData, options: .mutableLeaves)) as? [String: Any], let id = json["Result"] as? String else { return }
+				if id != "Failed processing image" {
+					data.id = id
+					data.uploading = false
+					data.save()
+				}
 				completion(id, data, nil)
 			}
 		}

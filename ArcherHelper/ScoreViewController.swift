@@ -17,6 +17,7 @@ class ScoreViewController: UIViewController {
 	
 	var presentingImage: UIImage?
 	var presentingDataSource: TrainingData?
+	weak var delegate: ScoreViewDelegate?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -47,6 +48,7 @@ class ScoreViewController: UIViewController {
 			let labels = gatherInfo()
 			trainingData.scores = labels.joined(separator: ",")
 			trainingData.save()
+			delegate?.newDataCreated(trainingData: trainingData)
 		} else {
 			presentingDataSource!.scores = gatherInfo().joined(separator: ",")
 			presentingDataSource!.uploading = true

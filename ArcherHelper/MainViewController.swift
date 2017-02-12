@@ -13,9 +13,9 @@ class MainViewController: UIViewController {
 	private let imgPicker = UIImagePickerController()
 	@IBOutlet weak var collectionView: UICollectionView!
 	
-	fileprivate var dataset: [TrainingData] {
+	fileprivate lazy var dataset: [TrainingData] = {
 		return TrainingData.findAll()
-	}
+	}()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -34,34 +34,55 @@ class MainViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		
+		//syncingData()
+	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		
+		syncingData()
+	}
+	
+	func syncingData() {
 		guard InternetDetector.isReachableViaWifi else { return }
 		let queue = DispatchQueue.global(qos: .background)
-		queue.async { [weak self] in
+		queue.sync { [weak self] in
 			let server = ServerConnector()
-			for eachData in self?.dataset ?? [] {
-				if eachData.uploading == false { continue }
+			for (index, eachData) in (self?.dataset ?? []).enumerated() {
+				guard
+					eachData.uploading == true,
+					let cell = self?.collectionView.cellForItem(at: IndexPath(row: index, section: 0)) as? ImageCell
+				else { continue }
+				
+				cell.syncing()
 				if eachData.id == "Not uploaded yet" {
 					server.sendRequest(data: eachData) { (id, data, error) in
 						if error != nil {
-							
-						} else if let dataID = id, let trainingData = data {
+							let alert = UIAlertController(title: "Error", message: error!.localizedDescription, preferredStyle: .alert)
+							alert.addAction(.cancel)
+							self?.present(alert, animated: true, completion: nil)
+							cell.failedSync()
+						} else if let dataID = id, let _ = data {
 							if dataID == "Failed processing image" {
-								
+								cell.failedSync()
 							} else {
-								trainingData.id = dataID
-								trainingData.uploading = false
-								trainingData.save()
+								cell.completeSync()
 							}
 						}
 					}
 				} else {
 					server.updateRequest(label: eachData.scores!, id: eachData.id!) { (id, error) in
 						if error != nil {
-							
+							let alert = UIAlertController(title: "Error", message: error!.localizedDescription, preferredStyle: .alert)
+							alert.addAction(.cancel)
+							self?.present(alert, animated: true, completion: nil)
+							cell.failedSync()
 						} else if let dataID = id, dataID != "Failed processing image" {
-							
+							eachData.uploading = false
+							cell.completeSync()
+							eachData.save()
 						} else {
-							
+							cell.failedSync()
 						}
 					}
 				}
@@ -89,6 +110,7 @@ class MainViewController: UIViewController {
 	// Pass the selected object to the new view controller.
 		guard let identifier = segue.identifier, identifier == "showScoreVC" else { return }
 		let destinationVC = segue.destination as! ScoreViewController
+		destinationVC.delegate = self
 		if let pickedImg = sender as? UIImage {
 			destinationVC.presentingImage = pickedImg
 		} else if let dataSource = sender as? TrainingData {
@@ -121,6 +143,11 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 		let dataSource = dataset[indexPath.row]
 		let image = UIImage(data: dataSource.picture as! Data)
 		cell.imageView.image = image
+		if dataSource.uploading == true {
+			cell.queuing()
+		} else {
+			cell.completeSync()
+		}
 		return cell
 	}
 	
@@ -128,5 +155,12 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 		let dataSource = dataset[indexPath.row]
 		performSegue(withIdentifier: "showScoreVC", sender: dataSource)
 		collectionView.deselectItem(at: indexPath, animated: true)
+	}
+}
+
+extension MainViewController: ScoreViewDelegate {
+	func newDataCreated(trainingData: TrainingData) {
+		dataset.insert(trainingData, at: 0)
+		collectionView.reloadData()
 	}
 }
