@@ -10,4 +10,5 @@ import Foundation
 
 protocol ScoreViewDelegate: class {
 	func newDataCreated(trainingData: TrainingData)
+	func dataDeleted(index: Int)
 }

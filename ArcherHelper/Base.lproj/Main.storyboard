@@ -280,8 +280,14 @@
                     </view>
                     <navigationItem key="navigationItem" id="mzd-sD-WSD">
                         <barButtonItem key="backBarButtonItem" title=" " id="xSJ-sh-Iso"/>
+                        <barButtonItem key="rightBarButtonItem" image="ic_cloud_off" id="qUi-ZF-FBo">
+                            <connections>
+                                <action selector="deleteData:" destination="BYZ-38-t0r" id="CHd-fn-3hN"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="deleteButton" destination="qUi-ZF-FBo" id="aPS-ek-3dB"/>
                         <outlet property="imageView" destination="Zt8-VF-3KP" id="0zD-uI-wLT"/>
                         <outletCollection property="scoreFields" destination="lNO-CN-U8y" collectionClass="NSMutableArray" id="BxL-bx-hjB"/>
                         <outletCollection property="scoreFields" destination="99z-0f-rrl" collectionClass="NSMutableArray" id="bRQ-f8-zKW"/>
@@ -429,6 +435,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_cloud_off" width="24" height="24"/>
         <image name="ic_photo" width="24" height="24"/>
         <image name="ic_photo_camera" width="24" height="24"/>
     </resources>

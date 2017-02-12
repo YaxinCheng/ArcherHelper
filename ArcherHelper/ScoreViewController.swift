@@ -12,11 +12,14 @@ class ScoreViewController: UIViewController {
 
 	@IBOutlet weak var imageView: UIImageView!
 	@IBOutlet var scoreFields: [UITextField]!
+	@IBOutlet weak var deleteButton: UIBarButtonItem!
 	
 	private var screenUp: Bool = false
 	
 	var presentingImage: UIImage?
 	var presentingDataSource: TrainingData?
+	var presentingDataSourceIndex: Int?
+	
 	weak var delegate: ScoreViewDelegate?
 	
 	override func viewDidLoad() {
@@ -24,9 +27,11 @@ class ScoreViewController: UIViewController {
 		// Do any additional setup after loading the view, typically from a nib.
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardShowup(notification:)), name: Notification.Name.UIKeyboardWillShow, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardClose(notification:)), name: Notification.Name.UIKeyboardWillHide, object: nil)
+		deleteButton.isEnabled = false
 		if presentingImage != nil {
 			imageView.image = presentingImage
 		} else if let datasource = presentingDataSource {
+			deleteButton.isEnabled = true
 			imageView.image = UIImage(data: datasource.picture as! Data)
 			guard let allScores = datasource.scores?.components(separatedBy: ",") else { return }
 			for (eachField, score) in zip(scoreFields, allScores) {
@@ -90,6 +95,23 @@ class ScoreViewController: UIViewController {
 	@IBAction func touchToCloseKeyboard(_ sender: Any) {
 		view.endEditing(true)
 	}
+	
+	@IBAction func deleteData(_ sender: Any) {
+		guard let index = self.presentingDataSourceIndex else { return }
+		let queue = DispatchQueue.global(qos: .background)
+		queue.async { [weak self] in
+			let server = ServerConnector()
+			guard let id = self?.presentingDataSource?.id else { return }
+			server.deleteRequest(id: id) { [weak self] result, error in
+				if error != nil {
+					
+				} else {
+					self?.delegate?.dataDeleted(index: index)
+					DispatchQueue.main.async { [weak self] in
+						_ = self?.navigationController?.popViewController(animated: true)
+					}
+				}
+			}
+		}
+	}
 }
-
-

@@ -85,4 +85,25 @@ struct ServerConnector {
 		}
 		session.resume()
 	}
+	
+	func deleteRequest(id: String, completion: @escaping (String?, Error?) -> Void) {
+		let json: Data
+		do {
+			json = try JSONSerialization.data(withJSONObject: ["_id": id], options: .prettyPrinted)
+		} catch {
+			return
+		}
+		var request = URLRequest(url: destinationURL)
+		request.httpMethod = "PUT"
+		request.httpBody = json
+		let session = URLSession.shared.dataTask(with: request) { (jsonData, response, error) in
+			if error != nil {
+				completion(nil, error)
+			} else {
+				guard let responseData = jsonData, let json = (try? JSONSerialization.jsonObject(with: responseData, options: .mutableLeaves)) as? [String: Any], let result = json["Result"] as? String else { return }
+				completion(result, nil)
+			}
+		}
+		session.resume()
+	}
 }

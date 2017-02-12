@@ -114,8 +114,9 @@ class MainViewController: UIViewController {
 		destinationVC.delegate = self
 		if let pickedImg = sender as? UIImage {
 			destinationVC.presentingImage = pickedImg
-		} else if let dataSource = sender as? TrainingData {
+		} else if let Sender = sender as? Array<Any>, let dataSource = Sender[0] as? TrainingData, let index = Sender[1] as? Int {
 			destinationVC.presentingDataSource = dataSource
+			destinationVC.presentingDataSourceIndex = index
 		}
 	}
 	
@@ -155,7 +156,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		let dataSource = dataset[indexPath.row]
-		performSegue(withIdentifier: "showScoreVC", sender: dataSource)
+		performSegue(withIdentifier: "showScoreVC", sender: [dataSource, indexPath.row])
 		collectionView.deselectItem(at: indexPath, animated: true)
 	}
 
@@ -178,5 +179,14 @@ extension MainViewController: ScoreViewDelegate {
 	func newDataCreated(trainingData: TrainingData) {
 		dataset.insert(trainingData, at: 0)
 		collectionView.reloadData()
+	}
+	
+	func dataDeleted(index: Int) {
+		let dataSourceDeleted = dataset[index]
+		dataset.remove(at: index)
+		dataSourceDeleted.delete()
+		DispatchQueue.main.async { [weak self] in
+			self?.collectionView.reloadData()
+		}
 	}
 }
