@@ -130,7 +130,16 @@ extension MainViewController: UIImagePickerControllerDelegate, UINavigationContr
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
 		let image = info[UIImagePickerControllerEditedImage] as? UIImage ?? info[UIImagePickerControllerOriginalImage] as? UIImage
 		picker.dismiss(animated: true) { [weak self] in
-			self?.performSegue(withIdentifier: "showScoreVC", sender: image)
+			if picker.sourceType == .photoLibrary {
+				self?.performSegue(withIdentifier: "showScoreVC", sender: image)
+			} else {
+				guard let newModel = TrainingData.construct(), let pickedImg = image else { return }
+				newModel.picture = UIImageJPEGRepresentation(pickedImg, 0.5) as NSData?
+				newModel.scores = "0,0,0,0,0,0,0,0,0,0,0,0"
+				self?.dataset.insert(newModel, at: 0)
+				newModel.save()
+				self?.collectionView.reloadData()
+			}
 		}
 	}
 }
