@@ -129,7 +129,7 @@ extension MainViewController: UIImagePickerControllerDelegate, UINavigationContr
 	}
 }
 
-extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 	func numberOfSections(in collectionView: UICollectionView) -> Int {
 		return 1
 	}
@@ -155,6 +155,19 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 		let dataSource = dataset[indexPath.row]
 		performSegue(withIdentifier: "showScoreVC", sender: dataSource)
 		collectionView.deselectItem(at: indexPath, animated: true)
+	}
+
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+		let width = collectionView.bounds.width
+		return CGSize(width: width/4, height: width/4)
+	}
+
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+		return 0
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+		return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 	}
 }
 

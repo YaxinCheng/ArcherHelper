@@ -314,25 +314,25 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cxW-Zb-Zxl">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="29i-Cz-kOz">
-                                    <size key="itemSize" width="107" height="107"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="PBb-Bt-Pav">
+                                    <size key="itemSize" width="183" height="183"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageCell" id="ASk-ws-gWj" customClass="ImageCell" customModule="ArcherHelper" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="107" height="107"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="183" height="183"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="107" height="107"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="183" height="183"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YAV-ia-Ekg">
-                                                    <rect key="frame" x="0.0" y="0.0" width="107" height="107"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="183" height="183"/>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_cloud_queue" translatesAutoresizingMaskIntoConstraints="NO" id="NOA-oG-7lU">
-                                                    <rect key="frame" x="87" y="87" width="20" height="20"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NOA-oG-7lU">
+                                                    <rect key="frame" x="163" y="163" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="OPe-ld-lcF"/>
                                                         <constraint firstAttribute="width" constant="20" id="kkL-AB-bFd"/>
@@ -408,7 +408,4 @@
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="ic_cloud_queue" width="24" height="24"/>
-    </resources>
 </document>
