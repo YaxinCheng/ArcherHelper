@@ -14,7 +14,7 @@ class MainViewController: UIViewController {
 	@IBOutlet weak var collectionView: UICollectionView!
 	
 	fileprivate lazy var dataset: [TrainingData] = {
-		return TrainingData.findAll()
+		return TrainingData.findAll().reversed()
 	}()
 	
 	override func viewDidLoad() {
@@ -63,9 +63,11 @@ class MainViewController: UIViewController {
 							alert.addAction(.cancel)
 							self?.present(alert, animated: true, completion: nil)
 							cell.failedSync()
-						} else if let dataID = id, let _ = data {
+						} else if let dataID = id, let trainingData = data {
 							if dataID == "Failed processing image" {
 								cell.failedSync()
+							} else if trainingData.scores == "0,0,0,0,0,0,0,0,0,0,0,0" {
+								cell.queuing()
 							} else {
 								cell.completeSync()
 							}
@@ -146,7 +148,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 		let dataSource = dataset[indexPath.row]
 		let image = UIImage(data: dataSource.picture as! Data)
 		cell.imageView.image = image
-		if dataSource.uploading == true {
+		if dataSource.uploading == true || dataSource.scores == "0,0,0,0,0,0,0,0,0,0,0,0" {
 			cell.queuing()
 		} else {
 			cell.completeSync()
@@ -177,7 +179,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 // MARK: - New Data
 extension MainViewController: ScoreViewDelegate {
 	func newDataCreated(trainingData: TrainingData) {
-		dataset.insert(trainingData, at: 0)
+		dataset.append(trainingData)
 		collectionView.reloadData()
 	}
 	
