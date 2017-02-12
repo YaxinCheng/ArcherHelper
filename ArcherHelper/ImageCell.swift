@@ -23,7 +23,10 @@ class ImageCell: UICollectionViewCell {
 	}()
 	
 	func queuing() {
-		syncIndicator.image = #imageLiteral(resourceName: "ic_cloud_queue")
+		DispatchQueue.main.async { [weak self] in
+			self?.syncIndicator.layer.removeAllAnimations()
+			self?.syncIndicator.image = #imageLiteral(resourceName: "ic_cloud_queue")
+		}
 	}
 	
 	func syncing() {
