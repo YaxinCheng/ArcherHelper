@@ -33,7 +33,7 @@ class ScoreViewController: UIViewController {
 				eachField.text = score
 			}
 		}
-		
+		navigationController?.isNavigationBarHidden = false
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {

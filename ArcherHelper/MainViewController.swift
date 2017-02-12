@@ -23,6 +23,7 @@ class MainViewController: UIViewController {
 		// Do any additional setup after loading the view.
 		imgPicker.delegate = self
 		imgPicker.allowsEditing = true
+		imgPicker.view.tintColor = .black
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(refreshCollectionView), name: Notification.Name("NewDataCreated"), object: nil)
 	}
@@ -34,7 +35,7 @@ class MainViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		
-		//syncingData()
+		navigationController?.isNavigationBarHidden = true
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -90,7 +91,7 @@ class MainViewController: UIViewController {
 		}
 	}
 	
-	@IBAction func navButtonPressed(_ sender: UIBarButtonItem) {
+	@IBAction func navButtonPressed(_ sender: AnyObject) {
 		if sender.tag == 0 {
 			imgPicker.sourceType = .photoLibrary
 			present(imgPicker, animated: true, completion: nil)
@@ -120,6 +121,7 @@ class MainViewController: UIViewController {
 	
 }
 
+// MARK: - Image Picker
 extension MainViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
 		let image = info[UIImagePickerControllerEditedImage] as? UIImage ?? info[UIImagePickerControllerOriginalImage] as? UIImage
@@ -128,7 +130,7 @@ extension MainViewController: UIImagePickerControllerDelegate, UINavigationContr
 		}
 	}
 }
-
+// MARK: - Collection View
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 	func numberOfSections(in collectionView: UICollectionView) -> Int {
 		return 1
@@ -159,7 +161,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		let width = collectionView.bounds.width
-		return CGSize(width: width/4, height: width/4)
+		return CGSize(width: width/3, height: width/3)
 	}
 
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -171,6 +173,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 	}
 }
 
+// MARK: - New Data
 extension MainViewController: ScoreViewDelegate {
 	func newDataCreated(trainingData: TrainingData) {
 		dataset.insert(trainingData, at: 0)

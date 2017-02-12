@@ -278,7 +278,9 @@
                             <action selector="touchToCloseKeyboard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jSz-RR-wcd"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="mzd-sD-WSD"/>
+                    <navigationItem key="navigationItem" id="mzd-sD-WSD">
+                        <barButtonItem key="backBarButtonItem" title=" " id="xSJ-sh-Iso"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="imageView" destination="Zt8-VF-3KP" id="0zD-uI-wLT"/>
                         <outletCollection property="scoreFields" destination="lNO-CN-U8y" collectionClass="NSMutableArray" id="BxL-bx-hjB"/>
@@ -312,7 +314,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cxW-Zb-Zxl">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="16" y="152" width="359" height="515"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="PBb-Bt-Pav">
                                     <size key="itemSize" width="183" height="183"/>
@@ -322,7 +324,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageCell" id="ASk-ws-gWj" customClass="ImageCell" customModule="ArcherHelper" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="183" height="183"/>
+                                        <rect key="frame" x="88" y="0.0" width="183" height="183"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="183" height="183"/>
@@ -359,27 +361,44 @@
                                     <outlet property="delegate" destination="uvo-qb-7wn" id="sao-34-dQr"/>
                                 </connections>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Training Data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="O82-7P-6YY">
+                                <rect key="frame" x="16" y="64" width="343" height="51.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="43"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kUv-ME-zmQ">
+                                <rect key="frame" x="16" y="124" width="24" height="24"/>
+                                <state key="normal" image="ic_photo"/>
+                                <connections>
+                                    <action selector="navButtonPressed:" destination="uvo-qb-7wn" eventType="touchUpInside" id="ttm-yN-qwU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0q-dm-jc1">
+                                <rect key="frame" x="48" y="124" width="24" height="24"/>
+                                <state key="normal" image="ic_photo_camera"/>
+                                <connections>
+                                    <action selector="navButtonPressed:" destination="uvo-qb-7wn" eventType="touchUpInside" id="jt7-P8-uik"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="kUv-ME-zmQ" firstAttribute="leading" secondItem="O82-7P-6YY" secondAttribute="leading" id="0Az-uF-Oti"/>
+                            <constraint firstItem="b0q-dm-jc1" firstAttribute="leading" secondItem="kUv-ME-zmQ" secondAttribute="trailing" constant="8" id="0Ne-DP-Ntr"/>
+                            <constraint firstItem="kUv-ME-zmQ" firstAttribute="top" secondItem="b0q-dm-jc1" secondAttribute="top" id="1ZF-2L-ccU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cxW-Zb-Zxl" secondAttribute="trailing" constant="-16" id="2tf-8K-BWw"/>
+                            <constraint firstItem="O82-7P-6YY" firstAttribute="leading" secondItem="2fv-AR-ZNF" secondAttribute="leadingMargin" id="CHO-9k-U0h"/>
                             <constraint firstItem="lUI-Jg-cqg" firstAttribute="top" secondItem="cxW-Zb-Zxl" secondAttribute="bottom" id="LaI-HR-fFc"/>
-                            <constraint firstItem="cxW-Zb-Zxl" firstAttribute="leading" secondItem="2fv-AR-ZNF" secondAttribute="leadingMargin" constant="-16" id="Sfl-bP-q5Q"/>
-                            <constraint firstItem="cxW-Zb-Zxl" firstAttribute="top" secondItem="JIA-NC-pNu" secondAttribute="bottom" constant="-64" id="zw8-X5-1Xl"/>
+                            <constraint firstItem="b0q-dm-jc1" firstAttribute="top" secondItem="O82-7P-6YY" secondAttribute="bottom" constant="8.5" id="MQO-Ni-CS0"/>
+                            <constraint firstItem="cxW-Zb-Zxl" firstAttribute="leading" secondItem="2fv-AR-ZNF" secondAttribute="leadingMargin" id="Sfl-bP-q5Q"/>
+                            <constraint firstItem="O82-7P-6YY" firstAttribute="top" secondItem="JIA-NC-pNu" secondAttribute="bottom" id="YrV-Y2-F70"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="O82-7P-6YY" secondAttribute="trailing" id="agI-jf-ICL"/>
+                            <constraint firstItem="cxW-Zb-Zxl" firstAttribute="top" secondItem="kUv-ME-zmQ" secondAttribute="bottom" constant="4" id="gbJ-Gp-uX9"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Pl7-Uy-JQH">
-                        <barButtonItem key="leftBarButtonItem" tag="1" title="Camera" id="C6Z-EY-Ec3">
-                            <connections>
-                                <action selector="navButtonPressed:" destination="uvo-qb-7wn" id="1pW-G7-bav"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Library" id="nH4-fB-uJ6">
-                            <connections>
-                                <action selector="navButtonPressed:" destination="uvo-qb-7wn" id="3C1-yh-WvQ"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="Pl7-Uy-JQH"/>
                     <connections>
                         <outlet property="collectionView" destination="cxW-Zb-Zxl" id="FsR-bA-HkJ"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="showScoreVC" id="P1c-7X-dOR"/>
@@ -394,9 +413,10 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vrO-EP-gsA" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Jnk-8x-Op1">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Jnk-8x-Op1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -408,4 +428,8 @@
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_photo" width="24" height="24"/>
+        <image name="ic_photo_camera" width="24" height="24"/>
+    </resources>
 </document>
