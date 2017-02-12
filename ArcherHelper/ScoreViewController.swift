@@ -38,6 +38,9 @@ class ScoreViewController: UIViewController {
 				eachField.text = score
 			}
 		}
+	}
+	
+	override func viewWillAppear(_ animated: Bool) {
 		navigationController?.isNavigationBarHidden = false
 	}
 	

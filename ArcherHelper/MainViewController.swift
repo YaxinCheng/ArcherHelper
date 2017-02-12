@@ -52,7 +52,8 @@ class MainViewController: UIViewController {
 			for (index, eachData) in (self?.dataset ?? []).enumerated() {
 				guard
 					eachData.uploading == true,
-					let cell = self?.collectionView.cellForItem(at: IndexPath(row: index, section: 0)) as? ImageCell
+					let cell = self?.collectionView.cellForItem(at: IndexPath(row: index, section: 0)) as? ImageCell,
+					eachData.scores != "0,0,0,0,0,0,0,0,0,0,0,0"
 				else { continue }
 				
 				cell.syncing()
@@ -179,7 +180,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 // MARK: - New Data
 extension MainViewController: ScoreViewDelegate {
 	func newDataCreated(trainingData: TrainingData) {
-		dataset.append(trainingData)
+		dataset.insert(trainingData, at: 0)
 		collectionView.reloadData()
 	}
 	
