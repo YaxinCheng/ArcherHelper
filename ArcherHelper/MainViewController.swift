@@ -26,6 +26,7 @@ class MainViewController: UIViewController {
 		imgPicker.view.tintColor = .black
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(refreshCollectionView), name: Notification.Name("NewDataCreated"), object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(syncingData), name: Notification.Name.UIApplicationWillEnterForeground, object: nil)
 	}
 	
 	func refreshCollectionView() {
