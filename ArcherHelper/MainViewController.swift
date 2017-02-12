@@ -52,8 +52,7 @@ class MainViewController: UIViewController {
 			for (index, eachData) in (self?.dataset ?? []).enumerated() {
 				guard
 					eachData.uploading == true,
-					let cell = self?.collectionView.cellForItem(at: IndexPath(row: index, section: 0)) as? ImageCell,
-					eachData.scores != "0,0,0,0,0,0,0,0,0,0,0,0"
+					let cell = self?.collectionView.cellForItem(at: IndexPath(row: index, section: 0)) as? ImageCell
 				else { continue }
 				
 				cell.syncing()
@@ -75,6 +74,7 @@ class MainViewController: UIViewController {
 						}
 					}
 				} else {
+					guard eachData.scores != "0,0,0,0,0,0,0,0,0,0,0,0" else { continue }
 					server.updateRequest(label: eachData.scores!, id: eachData.id!) { (id, error) in
 						if error != nil {
 							let alert = UIAlertController(title: "Error", message: error!.localizedDescription, preferredStyle: .alert)

@@ -105,14 +105,21 @@ class ScoreViewController: UIViewController {
 		queue.async { [weak self] in
 			let server = ServerConnector()
 			guard let id = self?.presentingDataSource?.id else { return }
-			server.deleteRequest(id: id) { [weak self] result, error in
+			let complish = {
+				self?.delegate?.dataDeleted(index: index)
+				DispatchQueue.main.async { [weak self] in
+					_ = self?.navigationController?.popViewController(animated: true)
+				}
+			}
+			if id == "Not uploaded yet" {
+				complish()
+				return
+			}
+			server.deleteRequest(id: id) { result, error in
 				if error != nil {
 					
 				} else {
-					self?.delegate?.dataDeleted(index: index)
-					DispatchQueue.main.async { [weak self] in
-						_ = self?.navigationController?.popViewController(animated: true)
-					}
+					complish()
 				}
 			}
 		}
