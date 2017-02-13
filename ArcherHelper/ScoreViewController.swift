@@ -38,6 +38,10 @@ class ScoreViewController: UIViewController {
 				eachField.text = score
 			}
 		}
+		
+		navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+		navigationController?.navigationBar.shadowImage = UIImage()
+		navigationController?.view.backgroundColor = .clear
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
