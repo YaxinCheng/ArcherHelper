@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import NohanaImagePicker
+import Photos
 
 class MainViewController: UIViewController {
 	
-	private let imgPicker = UIImagePickerController()
+	private let imgPicker = NohanaImagePickerController()
 	@IBOutlet weak var collectionView: UICollectionView!
 	
 	fileprivate lazy var dataset: [TrainingData] = {
@@ -21,16 +23,30 @@ class MainViewController: UIViewController {
 		super.viewDidLoad()
 		
 		// Do any additional setup after loading the view.
-		imgPicker.delegate = self
-		imgPicker.allowsEditing = true
-		imgPicker.view.tintColor = .black
 		
+		imgPicker.delegate = self
+		imgPicker.maximumNumberOfSelection = 199
 		NotificationCenter.default.addObserver(self, selector: #selector(refreshCollectionView), name: Notification.Name("NewDataCreated"), object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(syncingData), name: Notification.Name.UIApplicationWillEnterForeground, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(dataDeleted(notification:)), name: NSNotification.Name("ItemDeleted"), object: nil)
+		
+		if traitCollection.forceTouchCapability == .available {
+			registerForPreviewing(with: self, sourceView: view)
+		}
 	}
 	
 	func refreshCollectionView() {
 		collectionView.reloadData()
+	}
+	
+	func dataDeleted(notification: Notification) {
+		guard let userInfo = notification.userInfo as? [String: Int], let index = userInfo["index"] else { return }
+		let dataSourceDeleted = dataset[index]
+		dataset.remove(at: index)
+		dataSourceDeleted.delete()
+		DispatchQueue.main.async { [weak self] in
+			self?.collectionView.reloadData()
+		}
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -96,15 +112,7 @@ class MainViewController: UIViewController {
 	}
 	
 	@IBAction func navButtonPressed(_ sender: AnyObject) {
-		if sender.tag == 0 {
-			imgPicker.sourceType = .photoLibrary
-			present(imgPicker, animated: true, completion: nil)
-		} else {
-			imgPicker.sourceType = .camera
-			imgPicker.cameraCaptureMode = .photo
-			imgPicker.showsCameraControls = true
-			present(imgPicker, animated: true, completion: nil)
-		}
+		present(imgPicker, animated: true, completion: nil)
 	}
 	
 	// MARK: - Navigation
@@ -116,9 +124,7 @@ class MainViewController: UIViewController {
 		guard let identifier = segue.identifier, identifier == "showScoreVC" else { return }
 		let destinationVC = segue.destination as! ScoreViewController
 		destinationVC.delegate = self
-		if let pickedImg = sender as? UIImage {
-			destinationVC.presentingImage = pickedImg
-		} else if let Sender = sender as? Array<Any>, let dataSource = Sender[0] as? TrainingData, let index = Sender[1] as? Int {
+		if let Sender = sender as? Array<Any>, let dataSource = Sender[0] as? TrainingData, let index = Sender[1] as? Int {
 			destinationVC.presentingDataSource = dataSource
 			destinationVC.presentingDataSourceIndex = index
 		}
@@ -127,23 +133,33 @@ class MainViewController: UIViewController {
 }
 
 // MARK: - Image Picker
-extension MainViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-		let image = info[UIImagePickerControllerEditedImage] as? UIImage ?? info[UIImagePickerControllerOriginalImage] as? UIImage
-		picker.dismiss(animated: true) { [weak self] in
-			if picker.sourceType == .photoLibrary {
-				self?.performSegue(withIdentifier: "showScoreVC", sender: image)
-			} else {
-				guard let newModel = TrainingData.construct(), let pickedImg = image else { return }
-				newModel.picture = UIImageJPEGRepresentation(pickedImg, 0.5) as NSData?
-				newModel.scores = "0,0,0,0,0,0,0,0,0,0,0,0"
-				self?.dataset.insert(newModel, at: 0)
-				newModel.save()
-				self?.collectionView.reloadData()
-			}
+
+extension MainViewController: NohanaImagePickerControllerDelegate {
+	private func PH2Image(asset: PHAsset) -> UIImage? {
+		let manager = PHImageManager.default()
+		let option = PHImageRequestOptions()
+		option.isSynchronous = true
+		var image: UIImage? = UIImage()
+		manager.requestImage(for: asset, targetSize: CGSize(width: 300, height: 300), contentMode: .aspectFill, options: option) { (result, info) in
+			image = result
 		}
+		return image
+	}
+	
+	func nohanaImagePickerDidCancel(_ picker: NohanaImagePickerController) {
+		picker.dismiss(animated: true, completion: nil)
+	}
+	
+	func nohanaImagePicker(_ picker: NohanaImagePickerController, didFinishPickingPhotoKitAssets pickedAssts: [PHAsset]) {
+		guard !pickedAssts.isEmpty else { return }
+		let images = pickedAssts.map { PH2Image(asset: $0) }
+		let models = images.flatMap { TrainingData.construct(img: $0) }
+		dataset.insert(contentsOf: models, at: 0)
+		models.forEach { $0.save() }
+		picker.dismiss(animated: true, completion: nil)
 	}
 }
+
 // MARK: - Collection View
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 	func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -193,13 +209,30 @@ extension MainViewController: ScoreViewDelegate {
 		dataset.insert(trainingData, at: 0)
 		collectionView.reloadData()
 	}
-	
-	func dataDeleted(index: Int) {
-		let dataSourceDeleted = dataset[index]
-		dataset.remove(at: index)
-		dataSourceDeleted.delete()
-		DispatchQueue.main.async { [weak self] in
-			self?.collectionView.reloadData()
+}
+
+extension MainViewController: UIViewControllerPreviewingDelegate {
+	@available(iOS 9.0, *)
+	public func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+		if let vc = viewControllerToCommit as? ScoreViewController {
+			vc.delegate = self
+			navigationController?.show(vc, sender: self)
+		} else {
+			navigationController?.show(viewControllerToCommit, sender: self)
 		}
+	}
+
+	func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+		let point = collectionView.convert(location, from: collectionView.superview)
+		guard
+			let indexPath = collectionView.indexPathForItem(at: point),
+			let cell = collectionView.cellForItem(at: indexPath),
+		let scoreVC = storyboard?.instantiateViewController(withIdentifier: "ScoreViewController") as? ScoreViewController else {
+			return nil
+		}
+		scoreVC.presentingDataSource = dataset[indexPath.row]
+		scoreVC.presentingDataSourceIndex = indexPath.row
+		previewingContext.sourceRect = cell.frame
+		return scoreVC
 	}
 }

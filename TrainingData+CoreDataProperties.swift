@@ -2,7 +2,7 @@
 //  TrainingData+CoreDataProperties.swift
 //  ArcherHelper
 //
-//  Created by Yaxin Cheng on 2017-02-11.
+//  Created by Yaxin Cheng on 2017-02-15.
 //  Copyright © 2017 Yaxin Cheng. All rights reserved.
 //
 

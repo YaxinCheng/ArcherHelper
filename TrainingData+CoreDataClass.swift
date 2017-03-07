@@ -19,14 +19,18 @@ public class TrainingData: NSManagedObject {
 		delegate.saveContext()
 	}
 	
-	static func construct() -> TrainingData? {
+	static func construct(img: UIImage? = nil) -> TrainingData? {
 		let delegate = UIApplication.shared.delegate as! AppDelegate
 		let context = delegate.managedObjectContext
 		guard let model = NSEntityDescription.insertNewObject(forEntityName: "TrainingData", into: context) as? TrainingData else {
 			return nil
 		}
+		if let image = img {
+			model.picture = UIImagePNGRepresentation(image) as NSData?
+		}
 		model.uploading = true
 		model.id = "Not uploaded yet"
+		model.scores = "0,0,0,0,0,0,0,0,0,0,0,0"
 		let notification = Notification(name: Notification.Name("NewDataCreated"))
 		NotificationCenter.default.post(notification)
 		return model

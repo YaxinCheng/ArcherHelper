@@ -2,6 +2,7 @@ use_frameworks!
 
 target 'ArcherHelper' do
 	pod 'ReachabilitySwift', '~> 3'
+	pod 'NohanaImagePicker'
 end
 post_install do |installer|
   installer.pods_project.targets.each do |target|

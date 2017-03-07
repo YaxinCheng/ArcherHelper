@@ -22,6 +22,19 @@ class ScoreViewController: UIViewController {
 	
 	weak var delegate: ScoreViewDelegate?
 	
+	override var previewActionItems: [UIPreviewActionItem] {
+		let delete = UIPreviewAction(title: "Delete", style: .destructive) { (action, viewController) in
+			guard let vc = viewController as? ScoreViewController else { return }
+			if vc.presentingDataSource?.id != nil {
+				vc.deleteData(7)
+			} else if let index = vc.presentingDataSourceIndex {
+				let notification = Notification(name: Notification.Name("ItemDeleted"), object: nil, userInfo: ["index": index])
+				NotificationCenter.default.post(notification)
+			}
+		}
+		return [delete]
+	}
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
@@ -38,10 +51,6 @@ class ScoreViewController: UIViewController {
 				eachField.text = score
 			}
 		}
-		
-		navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-		navigationController?.navigationBar.shadowImage = UIImage()
-		navigationController?.view.backgroundColor = .clear
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -106,20 +115,24 @@ class ScoreViewController: UIViewController {
 	@IBAction func deleteData(_ sender: Any) {
 		guard let index = self.presentingDataSourceIndex else { return }
 		let queue = DispatchQueue.global(qos: .background)
+		let id = presentingDataSource?.id
 		queue.async { [weak self] in
 			let server = ServerConnector()
-			guard let id = self?.presentingDataSource?.id else { return }
+			guard id != nil else { return }
 			let complish = {
-				self?.delegate?.dataDeleted(index: index)
-				DispatchQueue.main.async { [weak self] in
-					_ = self?.navigationController?.popViewController(animated: true)
+				let notification = Notification(name: Notification.Name("ItemDeleted"), object: nil, userInfo: ["index": index])
+				NotificationCenter.default.post(notification)
+				if !(sender is Int) {
+					DispatchQueue.main.async { [weak self] in
+						_ = self?.navigationController?.popViewController(animated: true)
+					}
 				}
 			}
-			if id == "Not uploaded yet" {
+			if id! == "Not uploaded yet" {
 				complish()
 				return
 			}
-			server.deleteRequest(id: id) { result, error in
+			server.deleteRequest(id: id!) { result, error in
 				if error != nil {
 					
 				} else {
